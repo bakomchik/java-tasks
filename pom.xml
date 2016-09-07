@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>simplegrep</groupId>
-    <artifactId>simplegrep</artifactId>
+    <groupId>SimpleGrep</groupId>
+    <artifactId>SimpleGrep</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -22,7 +22,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>simplegrep</mainClass>
+                            <mainClass>fesd.Grep.SimpleGrep</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
