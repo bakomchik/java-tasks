@@ -1,3 +1,5 @@
+package grepper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,18 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ParamsGrep {
+public class ParamGrepperImpl implements Grepper{
 
-    public void grep(String param,
-                     String pattern,
-                     String fileName
-    ) {
+    public void grep( String[] params ) {
+
+        int len = params.length;
+        String param = params[len - 3];
+        String pattern = params[len - 2];
+        String fileName = params[len - 1];
+
         Path file = Paths.get( fileName );
-
-        if ( !Files.exists( file ) ) {
-            System.out.println( "File not found.");
-            return;
-        }
 
         if ( "-i".equals( param ) ) {
             iParamGrep( pattern, file );
@@ -35,6 +35,7 @@ public class ParamsGrep {
     }
 
     private void iParamGrep(String pattern, Path file) {
+        System.out.println("go grep with -i parameter");
         try {
 
             InputStream in = Files.newInputStream( file );
@@ -61,11 +62,14 @@ public class ParamsGrep {
     }
 
     private void rParamGrep(String pattern, Path file) {
+        System.out.println("go grep with -r parameter");
     }
 
     private void lParamGrep(String pattern, Path file) {
+        System.out.println("go grep with -l parameter");
     }
 
     private void vParamGrep(String pattern, Path file) {
+        System.out.println("go grep with -v parameter");
     }
 }

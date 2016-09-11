@@ -1,3 +1,5 @@
+package grepper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,19 +8,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class SimpleGrep {
+public class SimpleGrepperImpl implements Grepper {
 
-    public void grep(String pattern,
-                     String fileName
-    ) {
+    public void grep( String[] params ) {
+
+        int len = params.length;
+        String pattern = params[len - 2];
+        String fileName = params[len - 1];
+
         Path file = Paths.get( fileName );
+
         try {
-
-            if ( !Files.exists( file ) ) {
-                System.out.println( "File not found.");
-                return;
-            }
-
             InputStream in = Files.newInputStream( file );
             BufferedReader reader =
                     new BufferedReader( new InputStreamReader( in ) );
