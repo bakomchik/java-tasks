@@ -1,6 +1,6 @@
 package util;
 
-import enums.GrepParamName;
+import enums.GrepParamNameEnum;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class GrepValidator {
 
-    public boolean isValid( String[] params ) {
+    public boolean isValidCommandLineArgs(String[] params ) {
 
         if ( !existParams( params ) ) {
             System.out.println( "Error. Command line parameters are expected." );
@@ -30,7 +30,6 @@ public class GrepValidator {
             System.out.println( "Error. Three or four arguments are expected." );
             return false;
         }
-
 
         int len = params.length;
         String fileName = params[len - 1];
@@ -58,7 +57,7 @@ public class GrepValidator {
         int len = params.length;
 
         for ( int i = 1; i < len - 2; i++ ) {
-            if ( !GrepParamName.contains( params[i] ) ) {
+            if ( !GrepParamNameEnum.contains( params[i] ) ) {
                 return false;
             }
         }
@@ -80,6 +79,9 @@ public class GrepValidator {
 
     private boolean existParams(String[] params) {
         return params.length != 0;
-
     }
+
+
+
+
 }
