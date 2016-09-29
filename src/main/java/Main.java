@@ -1,10 +1,7 @@
 import grepper.Grepper;
 import grepper.ParamGrepperImpl;
-import grepper.SimpleGrepperImpl;
+import grepper.SimpleGrepper;
 import util.GrepRuntimeConfigurator;
-import util.GrepValidator;
-
-import java.nio.file.Files;
 
 public class Main {
 
@@ -12,16 +9,13 @@ public class Main {
 
         GrepRuntimeConfigurator config = new GrepRuntimeConfigurator( args );
 
+        if ( config.isExistParams() ) {
+            Grepper g = new ParamGrepperImpl();
+            g.grep( config );
+        } else {
+            Grepper g = new SimpleGrepper();
+            g.grep( config );
+        }
 
-    }
-
-    private static void noParamsGrep(String[] args) {
-        Grepper g = new SimpleGrepperImpl();
-        g.grep(args);
-    }
-
-    private static void paramGrep(String[] args) {
-        Grepper g = new ParamGrepperImpl();
-        g.grep(args);
     }
 }

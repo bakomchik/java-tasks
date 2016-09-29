@@ -1,5 +1,7 @@
 package grepper;
 
+import util.GrepRuntimeConfigurator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,15 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class SimpleGrepperImpl implements Grepper {
+public abstract class CommonGrepperImpl implements Grepper {
 
-    public void grep( String[] params ) {
-
-        int len = params.length;
-        String pattern = params[len - 2];
-        String fileName = params[len - 1];
-
-        Path file = Paths.get( fileName );
+    public void grep( GrepRuntimeConfigurator config ) {
+        String pattern = config.getSearchPattern();
+        Path file = Paths.get( config.getFilename() );
 
         try {
             InputStream in = Files.newInputStream( file );
@@ -27,7 +25,7 @@ public class SimpleGrepperImpl implements Grepper {
 
             while ((line = reader.readLine( ) ) != null ) {
 
-                if ( line.contains( pattern ) ) {
+                if ( contains (line, pattern) ) {
                     System.out.println(line);
                 }
             }
@@ -40,4 +38,6 @@ public class SimpleGrepperImpl implements Grepper {
             System.err.format("IOException: %s%n", e);
         }
     }
+
+    abstract public boolean contains ( String line, String pattern );
 }

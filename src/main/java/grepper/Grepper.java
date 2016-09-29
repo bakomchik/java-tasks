@@ -1,6 +1,8 @@
 package grepper;
 
+import util.GrepRuntimeConfigurator;
+
 public interface Grepper {
 
-    public void grep( String[] params);
+    public void grep( GrepRuntimeConfigurator config );
 }

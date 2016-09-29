@@ -21,6 +21,7 @@ public class GrepRuntimeConfigurator {
     private String[] commandLineParams;
     private String fileName;
     private String searchPattern;
+    private boolean existParams = false;
     private boolean isCFlagSet = false;
     private boolean isHFlagSet = false;
     private boolean isIFlagSet = false;
@@ -51,6 +52,7 @@ public class GrepRuntimeConfigurator {
         setSearchPattern( params[len - 2] );
 
         if ( params.length  > 3 ) {
+            existParams = true;
             setParams( params );
         }
     }
@@ -67,26 +69,19 @@ public class GrepRuntimeConfigurator {
     public void setParam(String param) {
         if ( GrepParamNameEnum.LC_C_PARAM.equals( param ) ) {
             isCFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_H_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_H_PARAM.equals( param ) ) {
             isHFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_I_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_I_PARAM.equals( param ) ) {
             isIFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_L_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_L_PARAM.equals( param ) ) {
             isLFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_N_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_N_PARAM.equals( param ) ) {
             isNFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_S_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_S_PARAM.equals( param ) ) {
             isSFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_V_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_V_PARAM.equals( param ) ) {
             isVFlagSet = true;
-        }
-        if ( GrepParamNameEnum.LC_W_PARAM.equals( param ) ) {
+        } else  if ( GrepParamNameEnum.LC_W_PARAM.equals( param ) ) {
             isWFlagSet = true;
         }
     }
@@ -94,12 +89,37 @@ public class GrepRuntimeConfigurator {
     public void setCommandLineParams( String[] commandLineParams ) {
         this.commandLineParams = commandLineParams;
     }
+
+    public String getFilename() {
+        return this.fileName;
+    }
+
     public  void setFileName( String fileName) {
         this.fileName = fileName;
     }
 
+    public String getSearchPattern() {
+        return this.searchPattern;
+    }
+
     public void setSearchPattern( String pattern ) {
         this.searchPattern = pattern;
+    }
+
+    public boolean isIFlagSet() {
+        return isIFlagSet;
+    }
+
+    public void setIFlagSet(boolean flag) {
+        isIFlagSet = flag;
+    }
+
+    public boolean isExistParams() {
+        return existParams;
+    }
+
+    public void setExistParams(boolean existParams) {
+        this.existParams = existParams;
     }
 }
 
